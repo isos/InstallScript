@@ -36,8 +36,8 @@ OE_CONFIG="${OE_USER}-server"
 ## === Ubuntu Trusty x64 & x32 === (for other distributions please replace these two links,
 ## in order to have correct version of wkhtmltox installed, for a danger note refer to 
 ## https://www.odoo.com/documentation/8.0/setup/install.html#deb ):
-WKHTMLTOX_X64=http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
-WKHTMLTOX_X32=http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-i386.deb
+##WKHTMLTOX_X64=http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-amd64.deb
+##WKHTMLTOX_X32=http://download.gna.org/wkhtmltopdf/0.12/0.12.1/wkhtmltox-0.12.1_linux-trusty-i386.deb
 
 #--------------------------------------------------
 # Update Server
@@ -78,13 +78,14 @@ sudo apt-get install python-gevent -y
 if [ $INSTALL_WKHTMLTOPDF = "True" ]; then
   echo -e "\n---- Install wkhtml and place shortcuts on correct place for ODOO 9 ----"
   #pick up correct one from x64 & x32 versions:
-  if [ "`getconf LONG_BIT`" == "64" ];then
-      _url=$WKHTMLTOX_X64
-  else
-      _url=$WKHTMLTOX_X32
-  fi
-  sudo wget $_url
-  sudo gdebi --n `basename $_url`
+  #if [ "`getconf LONG_BIT`" == "64" ];then
+  #    _url=$WKHTMLTOX_X64
+  #else
+  #    _url=$WKHTMLTOX_X32
+  #fi
+  #sudo wget $_url
+  #sudo gdebi --n `basename $_url`
+  sudo apt-get install wkhtmltopdf -y
   sudo ln -s /usr/local/bin/wkhtmltopdf /usr/bin
   sudo ln -s /usr/local/bin/wkhtmltoimage /usr/bin
 else
